@@ -281,6 +281,12 @@ filePicker.addEventListener('change', async (e) => {
   }
 })
 
+function removeZLib(inputString) {
+  var substring = " (Z-Library)";
+  var outputString = inputString.replace(substring, "");
+  return outputString;
+}
+
 async function processEPUB (inputBlob, name) {
   try {
     // Load EPUB
@@ -296,14 +302,14 @@ async function processEPUB (inputBlob, name) {
     // Write EPUB
     const blob = await epub.writeEPUB()
     const idx = filenames.length
-    filenames.push(name)
+    filenames.push(removeZLib(name))
     fixedBlobs.push(blob)
 
     if (epub.fixedProblems.length > 0) {
-      dlfilenames.push("(fixed) " + name)
+      dlfilenames.push(removeZLib(name) + "_Fixed")
       outputDiv.appendChild(build_output_html(idx, epub.fixedProblems))
     } else {
-      dlfilenames.push("(repacked) " + name)
+      dlfilenames.push(removeZLib(name) + "_repacked")
       outputDiv.appendChild(build_output_html(idx, TXT_NO_ERROR))
     }
   } catch (e) {
