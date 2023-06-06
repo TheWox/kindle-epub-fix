@@ -17,15 +17,10 @@
 </head>
 
 <body>
-    <h1>Amazon Kindle EPUB Fix</h1>
+    <h1>Alt Amazon Kindle EPUB Fix</h1>
     <p>
-        This is a fork of https://kindle-epub-fix.netlify.app/.
-    </p>
-    <p>
-        Amazon's Send to Kindle service has support for EPUB files, however, for historical reasons,
-        it still assumes ISO-8859-1 encoding if no encoding is specified. This creates malformed 
-        formatting errors for special characters. 
-        It is also pretty strict when it comes to EPUB format validation.
+        <b>This is a fork of kindle-epub-fix on <a href="https://github.com/innocenat/kindle-epub-fix" rel="noopener"
+            target="_blank">GitHub.</a></b>
     </p>
     <p>
         This tool will try to fix your EPUB to be able to use with Send to Kindle. 
@@ -38,6 +33,16 @@
         <li>Detect invalid and/or missing language tag in metadata, and prompt user to select new language.</li>
         <li>Remove stray &lt;img&gt; tags with no source field.</li>
     </ul>
+    <p>
+        <b>In addition to the above fixes, this fork will:</b>
+    </p>
+    <p>
+    <ul>
+        <li> Standardise the font scaling to 100% for a consistent font size in your reader. </li>
+        <li> Remove a certain keyword in brackets at the end of the file name. </li>
+        <li> The processed files will not be appended with 'fixed' or 'repacked'. </li>
+    </ul>
+    </p>
     <p>
         <b>Privacy:</b> The book is processed locally in your browser. We do not upload your file anywhere.
     </p>
@@ -61,46 +66,6 @@
     <div id="output"></div>
 
     <hr style="margin:1em 0">
-
-    <h2>Version History</h2>
-
-    <ul>
-        <li>
-            <strong>1.3 - Jan 4, 2023</strong><br>
-            Batch processing<br>
-            Language detection is now case-insensitive<br>
-            XML encoding regex is more forgiving
-        </li>
-        <li>
-            <strong>1.2 - September 13, 2022</strong><br>
-            Detect invalid language tag and prompt user for new language.<br>
-            Detect stray image tags and remove them.<br>
-            Fix bug in body ID tag replacement.
-        </li>
-        <li>
-            <strong>1.1.1 - September 10, 2022</strong><br>
-            User experience improvements.<br>
-            Add prefix to filenames of EPUBs that were fixed.
-        </li>
-        <li>
-            <strong>1.1 - August 24, 2022</strong><br>
-            Restructure the code to be able to handle other error types.<br>
-            Fix cannot detect existing encoding declaration if the declaration is using single quote.<br>
-            Add new fix for invalid hyperlink to body tag with ID.<br>
-            Also show the list of what has been fixed.
-        </li>
-        <li>
-            <strong>1.0.1 - August 14, 2022</strong><br>
-            Fix CRC problem in generated EPUB file caused by ZIP library.
-        </li>
-        <li>
-            <strong>1.0 - July 14, 2022</strong><br>
-            Initial release.
-        </li>
-    </ul>
-
-    <p>Source code is available on <a href="https://github.com/innocenat/kindle-epub-fix" rel="noopener"
-            target="_blank">GitHub.</a></p>
 
     <script src="script.js"></script>
 </body>

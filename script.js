@@ -94,6 +94,23 @@ class EPUBBook {
     }
   }
 
+  fixFontSize() {
+    const regex = /font-size:\s*([1-9]\d*|[01-9]\d+|[0-9]*\.\d+)%/g;
+    const replacement = 'font-size: 100%';
+  
+    for (const filename in this.files) {
+      const ext = filename.split('.').pop();
+      if (ext === 'css') {
+        let css = this.files[filename];
+        if (regex.test(css)) {
+          css = css.replace(regex, replacement);
+          this.fixedProblems.push(`Fixed font-size for file ${filename}`);
+        }
+        this.files[filename] = css;
+      }
+    }
+  }
+  
   // Fix linking to body ID showing up as unresolved hyperlink
   fixBodyIdLink() {
     const bodyIDList = []
@@ -282,7 +299,7 @@ filePicker.addEventListener('change', async (e) => {
 })
 
 function removeZLib(inputString) {
-  var substring = " (Z-Library).epub";
+  var substring = " (Z-Library)";
   var outputString = inputString.replace(substring, "");
   return outputString;
 }
@@ -294,6 +311,7 @@ async function processEPUB (inputBlob, name) {
     await epub.readEPUB(inputBlob)
 
     // Run fixing procedure
+    epub.fixFontSize()
     epub.fixBodyIdLink()
     epub.fixBookLanguage()
     epub.fixStrayIMG()
