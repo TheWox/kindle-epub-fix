@@ -94,10 +94,11 @@ class EPUBBook {
     }
   }
 
+  //Works fine in some cases, but can create less variation in font sizes in others.
   fixFontSize() {
     const regex = /font-size:\s*([1-9]\d*|[01-9]\d+|[0-9]*\.\d+)%/g;
     const replacement = 'font-size: 100%';
-  
+
     for (const filename in this.files) {
       const ext = filename.split('.').pop();
       if (ext === 'css') {
@@ -110,7 +111,7 @@ class EPUBBook {
       }
     }
   }
-  
+
   // Fix linking to body ID showing up as unresolved hyperlink
   fixBodyIdLink() {
     const bodyIDList = []
@@ -299,19 +300,18 @@ filePicker.addEventListener('change', async (e) => {
 })
 
 function removeZLib(inputString) {
-  var substring = " (Z-Library)";
-  var outputString = inputString.replace(substring, "");
+  var outputString = inputString.replace(new RegExp("\\(fixed\\) " + '|' + "\\(repacked\\) " + '|' + " \\(Z-Library\\)", 'g'), "");
+  
   return outputString;
 }
 
-async function processEPUB (inputBlob, name) {
+async function processEPUB(inputBlob, name) {
   try {
     // Load EPUB
     const epub = new EPUBBook()
     await epub.readEPUB(inputBlob)
 
     // Run fixing procedure
-    epub.fixFontSize()
     epub.fixBodyIdLink()
     epub.fixBookLanguage()
     epub.fixStrayIMG()

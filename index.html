@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Amazon Kindle EPUB Fix</title>
+    <title>Alt Amazon Kindle EPUB Fix</title>
     <script src="https://unpkg.com/@zip.js/zip.js@2.6.12/dist/zip.min.js"></script>
     <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
     <style>
         ul.scroll {
             max-height: 10rem;
@@ -17,14 +18,13 @@
 </head>
 
 <body>
-    <h1>Alt Amazon Kindle EPUB Fix</h1>
+    <h1>📚 Alt Amazon Kindle EPUB Fix</h1>
     <p>
-        <b>This is a fork of kindle-epub-fix on <a href="https://github.com/innocenat/kindle-epub-fix" rel="noopener"
-            target="_blank">GitHub.</a></b>
+    This is a fork of the great kindle-epub-fix.
     </p>
     <p>
-        This tool will try to fix your EPUB to be able to use with Send to Kindle. 
-        It currently tries to fix these problems:
+        This tool will try to fix your EPUB to be able to view correctly on a Kindle. 
+        It attempts to fix these problems:
     </p>
     <ul>
         <li>Fix UTF-8 encoding problem by adding UTF-8 declaration if no encoding is specified</li>
@@ -38,9 +38,10 @@
     </p>
     <p>
     <ul>
-        <li> Standardise the font scaling to 100% for a consistent font size in your reader. </li>
-        <li> Remove a certain keyword in brackets at the end of the file name. </li>
-        <li> The processed files will not be appended with 'fixed' or 'repacked'. </li>
+        <!-- <li> Standardise the font scaling to 100% for a consistent font size in your reader. </li> -->
+        <li> Remove a certain keyword in brackets at the end of the filename. </li>
+        <li> Remove the '(fixed)' and '(repacked)' prefixes in existing filenames. </li>
+        <li> The processed files will not be appended with '(fixed)' or '(repacked)'. </li>
     </ul>
     </p>
     <p>
@@ -66,7 +67,11 @@
     <div id="output"></div>
 
     <hr style="margin:1em 0">
-
+    <p>
+        <b>The source code is here on <a href="https://github.com/TheWox/kindle-epub-fix" rel="noopener"
+            target="_blank">GitHub.</a>
+        </b>
+    </p>
     <script src="script.js"></script>
 </body>
 
